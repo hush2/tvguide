@@ -12,7 +12,9 @@ $provider = array(
     'Dream Satellite TV'    => 65,
 );
 
-$networks = array('HBO', 'PBO', 'FOX');
+// Add any available from channel from ClickTheCity (case sensitive).
+$networks = array('HBO', 'PBO', 'FOX', 'ETC', '2nd Avenue', 'JackTV', 'ESPN', 'Disney Channel', 'Cartoon Network',
+                  'National Geographic', 'Discovery Channel', 'History Channel');
 
 // Send a POST request
 function fetch($body)

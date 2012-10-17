@@ -7,14 +7,15 @@ import codecs
 import time
 
 def get_files():
+
     data={}
     dt=datetime.datetime.now()
     today='%s-%02i-%02i' % (dt.year, dt.month, dt.day)
+
     data['btnLoad']='Go'
     data['optTime']=''
     data['optDate']=today
     data['optCable']='8'
-
 
     global hour
     hour = datetime.datetime.now().hour
@@ -38,13 +39,12 @@ def get_files():
 
         resp, content = h.request(url, method="POST", body=body,headers=headers)
 
-
         f=open('%s_%02i.htm' % (today, i),'w')
         f.write(content)
         f.close()
 
-
 def parse_file(soup, networks):
+
     global d
     for network, chan in networks:
         alt=soup.find('img',alt=network)
@@ -66,15 +66,13 @@ def parse_file(soup, networks):
 def main():
     get_files()
     global d
-    head= '<html><head><title>%s</title></head><body><table border="1">'
+    head = '<html><head><title>%s</title></head><body><table border="1">'
 
+    head +=  time.strftime('<h1>%B %d, %Y (%A)<h1>',time.localtime())
 
-    head+=  time.strftime('<h1>%B %d, %Y (%A)<h1>',time.localtime())
-
-
-    title='<tr><th colspan="2">%s (%s)</th></tr>'
-    table='<tr><td>%s</td><td>%s</td></tr>'
-    table2='<tr><td style="background-color: #c0c0c0">%s</td><td>%s</td></tr>'
+    title  = '<tr><th colspan="2">%s (%s)</th></tr>'
+    table  = '<tr><td>%s</td><td>%s</td></tr>'
+    table2 = '<tr><td style="background-color: #c0c0c0">%s</td><td>%s</td></tr>'
 
     foot='</table></body></html>'
     tables=''
@@ -105,8 +103,6 @@ def main():
 
     f=codecs.open('%s.htm' % today,'w','utf-8')
     f.write(head %datetime.datetime.now() + tables + foot)
-
-
 
 d = {}
 main()
