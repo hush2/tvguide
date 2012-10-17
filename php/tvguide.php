@@ -46,7 +46,7 @@ function parse($filename, $shows)
         if ($items->length < 1) {
             break;
         }
-        $channel_number = $items->item(1)->textContent;
+        $shows[$network]['#'] = $items->item(1)->textContent;
         $anchors = $items->item(3)->getElementsByTagName('a');
         foreach ($anchors as $a) {
             $show_name = $a->textContent;
@@ -94,7 +94,8 @@ foreach (range($hour2, 24, 2) as $hour) {
 
 $html = "<html><body><title>tvguide</title><table border='1'><tr><h3>$date schedule for $name<h3></tr>";
 foreach ($shows as $show_name => $sched) {
-    $html .= "<tr><th colspan='2'>$show_name</th></tr>";
+    $chan = array_shift($sched); // Channel number
+    $html .= "<tr><th colspan='2'>$show_name ($chan)</th></tr>";
     foreach ($sched as $start_time => $show_name) {
         $html .= "<tr><td " . (strpos($start_time, 'PM') ? "style='background-color: #c0c0c0'>" : '>');
         $html .= "$start_time</td><td>$show_name</td></tr>";
