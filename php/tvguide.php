@@ -97,16 +97,10 @@ foreach (range($hour2, 24, 2) as $hour) {
     }
 }
 
-$html = "<html><body><title>tvguide</title><table border='1'><tr><h3>$date schedule for $name<h3></tr>";
-foreach ($shows as $show_name => $sched) {
-    $chan = array_shift($sched); // Channel number
-    $html .= "<tr><th colspan='2'>" .escape($show_name) . ' (' . escape($chan).") </th></tr>";
-    foreach ($sched as $start_time => $show_name) {
-        $html .= "<tr><td " . (strpos($start_time, 'PM') ? "style='background-color: #c0c0c0'>" : '>');
-        $html .= escape($start_time)."</td><td>".escape($show_name)."</td></tr>";
-    }
-}
-$html .= "</table></body></html>";
+ob_start();
+include 'tvguide.html';
+$html = ob_get_clean();
 
 echo "\nWriting file '$date.html'";
 file_put_contents("$date.html", $html);
+
