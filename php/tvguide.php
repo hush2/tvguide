@@ -60,6 +60,11 @@ function parse($filename, $shows)
     return $shows;
 }
 
+function escape($s)
+{
+   return htmlentities($s, ENT_QUOTES);
+}
+
 //
 $cableid    = $provider[$name];
 $today      = date('Y-m-d');        // YY:MM:DD required for POST
@@ -95,10 +100,10 @@ foreach (range($hour2, 24, 2) as $hour) {
 $html = "<html><body><title>tvguide</title><table border='1'><tr><h3>$date schedule for $name<h3></tr>";
 foreach ($shows as $show_name => $sched) {
     $chan = array_shift($sched); // Channel number
-    $html .= "<tr><th colspan='2'>$show_name ($chan)</th></tr>";
+    $html .= "<tr><th colspan='2'>" .escape($show_name) . ' (' . escape($chan).") </th></tr>";
     foreach ($sched as $start_time => $show_name) {
         $html .= "<tr><td " . (strpos($start_time, 'PM') ? "style='background-color: #c0c0c0'>" : '>');
-        $html .= "$start_time</td><td>$show_name</td></tr>";
+        $html .= escape($start_time)."</td><td>".escape($show_name)."</td></tr>";
     }
 }
 $html .= "</table></body></html>";
