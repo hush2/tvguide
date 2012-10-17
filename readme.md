@@ -1,7 +1,7 @@
 # tvguide #
 
-Scrapes ClickTheCity.com for Cable TV schedules. Available in PHP, Ruby & Python.
+Scrapes ClickTheCity.com for Cable TV schedules. 
 
 ## ToDo ##
 
-Clean up code. Source is really disorganized and ugly :)
+Clean up code. Source is really disorganized and ugly :-)

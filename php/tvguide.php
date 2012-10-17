@@ -1,6 +1,9 @@
 <?php
 
 // (C) 2012 hush2 <hushywushy@gmail.com>
+//
+// Scrapes ClickTheCity.com for Cable TV schedules. 
+// Note: This is a command line program.
 
 $name = 'Destiny Cable';
 

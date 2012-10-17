@@ -1,3 +1,5 @@
+# (C) 2012 hush2 <hushywushy@gmail.com>
+
 from BeautifulSoup import BeautifulSoup
 import httplib2
 import urllib
