@@ -1,0 +1,12 @@
+<html><title></title>
+<table border="1">
+<tr><h1><%=Time.now.strftime '%B %d, %Y (%A)' %><h1><tr>
+<% networks.each do |network|  %> 
+  <tr><th colspan="2"><%= network %></th></tr>
+  <% shows[network].each do |show| %>                
+        <tr><td <% unless show[0].include? "AM"%> style="background-color: #c0c0c0"<% end %>>
+        <%= show[0] %></td><td><%= show[1] %></td></tr>      
+  <% end %>
+<% end %>
+</table>
+</html>
