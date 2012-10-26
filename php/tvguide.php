@@ -77,7 +77,7 @@ $hour2      = $hour % 2 ? $hour - 1 : $hour; // fetch on even hour
 $shows = array();
 foreach (range($hour2, 24, 2) as $hour) {
     $hour = sprintf('%02d', $hour);  // 2 digit hour
-    $filename = "cache/{$today}_{$hour}.html";
+    $filename = "{$today}_{$hour}.html";
     echo "Downloading $filename" . PHP_EOL;
     if (file_exists($filename)) {
         continue;
