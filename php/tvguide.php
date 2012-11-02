@@ -77,14 +77,14 @@ $hour2      = $hour % 2 ? $hour - 1 : $hour; // fetch on even hour
 $shows = array();
 foreach (range($hour2, 24, 2) as $hour) {
     $hour = sprintf('%02d', $hour);  // 2 digit hour
-    $filename = "{$today}_{$hour}.html";
+    $filename = "cache/{$today}_{$hour}.html";
     echo "Downloading $filename" . PHP_EOL;
     if (file_exists($filename)) {
         continue;
     }
     $body = "optCable=$cableid&optDate=$today&optTime=$hour:00:00&btnLoad=Go";
     $result = fetch($body);
-    file_put_contents("cache/$filename", $result);
+    file_put_contents("$filename", $result);
 }
 echo PHP_EOL;
 
@@ -104,6 +104,6 @@ ob_start();
 include 'template.php';
 $html = ob_get_clean();
 
-echo "\nWriting file '$date.html'";
+echo "\nWriting file '$date.html'\n\n";
 file_put_contents("$date.html", $html);
 
